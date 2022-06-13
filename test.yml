@@ -4,17 +4,7 @@
   collections:
     - ibm.power_ibmi
 
-  vars:
-    sql_stderr: "{{sql_delete.stderr }}"
-
   tasks:
-    - name: SQL DELETE
-      ibmi_sql_execute:
-        sql: "DELETE FROM qgpl.ansible WHERE NAME = 'USER8'"
-      register: sql_delete
-      ignore_errors: true
-      no_log: true
-
-    - name: SQL DEBUG
-      debug:
-        msg: "{{ sql_stderr.xmlhint }}"
+    - name: CL command
+      ibmi_cl_command:
+        cmd: "DSPLIBL"
